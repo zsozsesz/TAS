@@ -63,7 +63,6 @@ router.post('/login', function(req, res) {
                     req.session.cookie.maxAge = hour;
                     req.session.email=email;
                     req.session.userID=result[0].userID;
-
                     res.json({
                         success:true,
                         error:0,
@@ -92,7 +91,7 @@ router.post('/login', function(req, res) {
 router.get('/logout',function (req,res) {
     req.session.login = false;
     req.session.level=1;
-    res.send({
+    res.json({
         success:true,
         error:0,
         data: ''
@@ -109,5 +108,13 @@ router.get('/document', function(req, res) {
         console.log(err); //null
         });
     res.download('../documents/test.xml');
+});
+
+router.get('/exp',function (req,res) {
+    console.log(req.session.level);
+   res.json({
+       login: req.session.login,
+       level: req.session.level
+   });
 });
 module.exports = router;

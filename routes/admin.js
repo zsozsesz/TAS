@@ -8,7 +8,6 @@ router.post('/adduser', function(req, res, next) {
     var sql = "SELECT email FROM user WHERE email='"+email+"'";
     db.query(sql,function (err,result) {
         if(err) {
-            console.log(err);
             return res.json({
                 success: false,
                 error: 2
